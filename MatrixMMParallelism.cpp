@@ -30,7 +30,8 @@ int main(int argc, char *argv[])
 	}
 
 	mt19937 rand(time(0));
-
+	
+	//lines 34 - 58 create and fill matrices A and B
 	float **A = new float*[matrixSize];
 	for (int i = 0; i < matrixSize; i++)
 	{
@@ -55,6 +56,7 @@ int main(int argc, char *argv[])
 		}
 	}
 
+	//create matrix C
 	float **C = new float*[matrixSize];
 	for (int i = 0; i < matrixSize; i++)
 	{
@@ -64,6 +66,8 @@ int main(int argc, char *argv[])
 	//start the timer
 	chrono::high_resolution_clock::time_point t1 =
 		chrono::high_resolution_clock::now();
+
+	//run the interface function	
 	for (int i = 0; i < execTimes; i++) {
 		tileMM(C, A, B, matrixSize, tileSize);
 	}
@@ -82,6 +86,8 @@ int main(int argc, char *argv[])
 	return EXIT_SUCCESS;
 }
 
+
+//Interface function for tiled matrix multiplication
 void tileMM(float** C, float** A, float** B, int n, int tN){
 	int i0, i1, j0, j1, k0, k1;
 
@@ -108,7 +114,7 @@ void tileMM(float** C, float** A, float** B, int n, int tN){
 		}
 	}
 }
-
+//helper function for tiled matrix multiplication
 void tileMMH(float** C, float** A, float** B, int i0, int i1, int j0, int j1, int k0, int k1){
 	int i, j, k;
 
