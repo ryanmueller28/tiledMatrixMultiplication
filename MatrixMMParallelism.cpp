@@ -29,6 +29,7 @@ int main(int argc, char *argv[])
 		execTimes = atoi(argv[3]);
 	}
 
+	//Mersenne twister random number generator
 	mt19937 rand(time(0));
 	
 	//lines 34 - 58 create and fill matrices A and B
@@ -80,7 +81,7 @@ int main(int argc, char *argv[])
 	chrono::duration<double> time_span =
 		chrono::duration_cast<chrono::duration<double>>(t2 - t1);
 
-	cout << matrixSize << ", " << tileSize << ", " << execTimes << time_span.count()
+	cout << matrixSize << ", " << tileSize << ", " << execTimes << ", " << time_span.count()
 		<< ", " << time_span.count() / execTimes << endl;
 
 	return EXIT_SUCCESS;
@@ -114,6 +115,7 @@ void tileMM(float** C, float** A, float** B, int n, int tN){
 		}
 	}
 }
+
 //helper function for tiled matrix multiplication
 void tileMMH(float** C, float** A, float** B, int i0, int i1, int j0, int j1, int k0, int k1){
 	int i, j, k;
